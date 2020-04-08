@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "gRPC.Core.Server";
+
+import "google/protobuf/timestamp.proto";
+
+package emp;
+
+// The employee service definition.
+service Emp {
+  // Sends a request
+  rpc GetEmployeeList (EmployeeRequest) returns (stream EmployeeModel);
+  rpc GetEmployee (EmployeeRequest) returns (EmployeeModel);
+}
+
+// the request parameter
+message EmployeeListRequest {
+   // you can add paging info here
+}
+
+message EmployeeRequest {
+   int32 id = 1;
+}
+
+// the response message
+ 
+message EmployeeModel{
+      int32 Id = 1;
+      string FirstName = 2;
+      string LastName = 3;
+      google.protobuf.Timestamp date = 4;
+}
+
